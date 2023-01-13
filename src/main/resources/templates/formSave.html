@@ -16,7 +16,7 @@
     <title>Автомобильные инциденты</title>
 </head>
 <body>
-<div class="container-fluid p-0">
+<div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" text="/">Автомобильные инциденты</a>
@@ -32,32 +32,35 @@
         </div>
     </nav>
 
-    <div class="container">
-        <table class="table table-hover table-light">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Название</th>
-                <th scope="col">Описание</th>
-                <th scope="col">Адрес</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="accident: ${accidents}">
 
-                <td>
-                    <a th:href="@{|/formUpdate/${accident.id}|}">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                    <span th:text="${accident.id}"></span>
-                    </span>
-                </td>
-                <td th:text="${accident.name}"/>
-                <td th:text="${accident.text}"/>
-                <td th:text="${accident.address}"/>
-            </tr>
-            </tbody>
-        </table>
+    <div class="row pt-3">
+        <div class="card" style="width: 100%">
+            <div class="card-body">
+                Новый инцидент
+            </div>
+            <div class="card-body">
+                <form th:action="@{/create}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="accident.id" value="0"/>
+                    <div class="row">
+                        <div class="col">
+                            <label>Название нарушения</label>
+                            <input type="text" class="form-control" placeholder="Название" name="accident.name">
+                        </div>
+                        <div class="col">
+                            <label>Адрес нарушения</label>
+                            <input type="text" class="form-control" placeholder="Адрес" name="accident.address">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>Описание нарушения</label>
+                        <input type="text" class="form-control" name="accident.text">
+                    </div>
+                    <button type="submit" class="btn btn-primary m-3">Отправить
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 </body>

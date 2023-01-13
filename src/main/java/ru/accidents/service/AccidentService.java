@@ -15,4 +15,14 @@ public class AccidentService {
     public List<Accident> getAll() {
         return List.of();
     }
+
+    public void create(Accident accident) {
+    }
+
+    public Accident getById(int id) {
+        return new Accident();
+    }
+
+    public void update(Accident accident) {
+    }
 }
