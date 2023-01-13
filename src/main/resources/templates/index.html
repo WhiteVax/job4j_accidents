@@ -25,8 +25,25 @@
         </div>
     </nav>
 
-    <div class="container mt-2">
-        <p th:text="${user}"></p>
+    <div class="container">
+        <table class="table table-hover table-light">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Адрес</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="accident: ${accidents}">
+                <td th:text="${accident.id}"/>
+                <td th:text="${accident.name}"/>
+                <td th:text="${accident.text}"/>
+                <td th:text="${accident.address}"/>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
