@@ -12,8 +12,8 @@ import java.util.List;
 public class AccidentService {
     private final AccidentMem accidentMem;
 
-    public List<Accident> getAll() {
-        return List.of();
+    public List<Accident> findAll() {
+        return accidentMem.findAll();
     }
 
     public void create(Accident accident) {
