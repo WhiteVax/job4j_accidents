@@ -59,8 +59,8 @@
                     </div>
                     <br>
                     <div class="form-group">
-                        <label for="type.id">Тип</label>
-                        <select class="form-control" id="type.id"  name="type.id">
+                        <label for="type">Тип</label>
+                        <select class="form-control" id="type"  name="type.id">
                             <option th:each="type: ${types}"
                                     th:text="${type.name}"
                                     th:value="${type.id}"></option>

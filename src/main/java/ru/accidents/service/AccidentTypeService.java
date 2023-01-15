@@ -5,6 +5,7 @@ import ru.accidents.model.AccidentType;
 import ru.accidents.repository.AccidentTypeMem;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccidentTypeService {
@@ -16,5 +17,9 @@ public class AccidentTypeService {
 
     public List<AccidentType> findAll() {
         return accidentTypeMem.findAll();
+    }
+
+    public Optional<AccidentType> findById(int id) {
+        return accidentTypeMem.findById(id);
     }
 }

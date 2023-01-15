@@ -33,7 +33,14 @@ public class AccidentControl {
     }
 
     @PostMapping("/saveAccident")
-    public String save(@ModelAttribute Accident accident) {
+    public String save(@ModelAttribute Accident accident, @RequestParam("type.id") int id,
+                       Model model) {
+        var type = accidentTypeService.findById(id);
+        if (type.isEmpty()) {
+            model.addAttribute("message", "Ошибка 404 при получении категорий инцидента.");
+            return "404";
+        }
+        accident.setType(type.get());
         accidentService.create(accident);
         return "redirect:/";
     }
@@ -50,7 +57,14 @@ public class AccidentControl {
     }
 
     @PostMapping("/updateAccident")
-    public String update(@ModelAttribute Accident accident) {
+    public String update(@ModelAttribute Accident accident, @RequestParam("type.id") int id,
+                         Model model) {
+        var type = accidentTypeService.findById(id);
+        if (type.isEmpty()) {
+            model.addAttribute("message", "Ошибка 404 при получении категорий инцидента.");
+            return "404";
+        }
+        accident.setType(type.get());
         accidentService.update(accident);
         return "redirect:/";
     }
