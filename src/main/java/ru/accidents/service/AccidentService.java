@@ -6,6 +6,7 @@ import ru.accidents.model.Accident;
 import ru.accidents.repository.AccidentMem;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -22,7 +23,7 @@ public class AccidentService {
     public void update(Accident accident) {
     }
 
-    public Accident findById(int id) {
+    public Optional<Accident> findById(int id) {
         return accidentMem.findById(id);
     }
 }

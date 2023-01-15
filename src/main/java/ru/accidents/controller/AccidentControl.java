@@ -1,5 +1,6 @@
 package ru.accidents.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,6 +10,7 @@ import ru.accidents.model.Accident;
 import ru.accidents.service.AccidentService;
 import ru.accidents.service.AccidentTypeService;
 
+@Controller
 public class AccidentControl {
     private final AccidentService accidentService;
     private final AccidentTypeService accidentTypeService;
@@ -38,7 +40,12 @@ public class AccidentControl {
 
     @GetMapping("/formUpdateAccident")
     public String viewUpdateAccident(@RequestParam("id") int id, Model model) {
-        model.addAttribute("accident", accidentService.findById(id));
+        var accident = accidentService.findById(id);
+        if (accident.isEmpty()) {
+            model.addAttribute("message", "Ошибка 404 при получении данных инцидента.");
+            return "404";
+        }
+        model.addAttribute("accident", accidentService.findById(id).get());
         return "editAccident";
     }
 
