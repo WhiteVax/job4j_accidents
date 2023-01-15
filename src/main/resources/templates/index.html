@@ -46,15 +46,15 @@
             <tr th:each="accident: ${accidents}">
 
                 <td>
-                    <a th:href="@{|/formUpdate/${accident.id}|}">
+                    <a th:href="@{|/formUpdateAccident?id=${accident.id}|}">
                         <i class="fa fa-edit"></i>
                     </a>
                     <span th:text="${accident.id}"></span>
                     </span>
                 </td>
-                <td th:text="${accident.name}"/>
-                <td th:text="${accident.text}"/>
-                <td th:text="${accident.address}"/>
+                <td th:text="${accident.name}"></td>
+                <td th:text="${accident.text}"></td>
+                <td th:text="${accident.address}"></td>
             </tr>
             </tbody>
         </table>

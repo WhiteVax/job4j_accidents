@@ -19,10 +19,10 @@ public class AccidentService {
     public void create(Accident accident) {
     }
 
-    public Accident getById(int id) {
-        return new Accident();
+    public void update(Accident accident) {
     }
 
-    public void update(Accident accident) {
+    public Accident findById(int id) {
+        return accidentMem.findById(id);
     }
 }

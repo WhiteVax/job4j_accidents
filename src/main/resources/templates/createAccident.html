@@ -38,24 +38,31 @@
                 Новый инцидент
             </div>
             <div class="card-body">
-                <form th:action="@{/create}" method="POST" th:object = "${accident}" enctype="multipart/form-data">
-                    <input type="hidden" name="accident.id" th:field="accident.id"/>
+                <form th:action="@{/createAccident}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="0"/>
                     <div class="row">
                         <div class="col">
                             <label>Название нарушения</label>
-                            <input type="text" class="form-control" name="accident.name"
-                                   th:text="accident.name">
+                            <input type="text" class="form-control" placeholder="Название" name="name">
                         </div>
                         <div class="col">
                             <label>Адрес нарушения</label>
-                            <input type="text" class="form-control" name="accident.address"
-                                   th:text="accident.address">
+                            <input type="text" class="form-control" placeholder="Адрес" name="address">
                         </div>
                     </div>
                     <br>
                     <div class="form-group">
                         <label>Описание нарушения</label>
-                        <input type="text" class="form-control" name="accident.text" th:text="accident.text">
+                        <input type="text" class="form-control" name="text">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="id">Тип</label>
+                        <select class="form-control" id="id"  name="id">
+                            <option th:each="type: ${types}"
+                                    th:text="${type.name}"
+                                    th:value="${type.id}"></option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary m-3">Отправить
                     </button>

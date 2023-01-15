@@ -3,7 +3,6 @@ package ru.accidents.repository;
 import org.springframework.stereotype.Repository;
 import ru.accidents.model.Accident;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,4 +14,10 @@ public class AccidentMem {
     public List<Accident> findAll() {
         return accidents.values().stream().toList();
     }
+
+    public Accident findById(int id) {
+        return accidents.get(id);
+    }
+
+    
 }
