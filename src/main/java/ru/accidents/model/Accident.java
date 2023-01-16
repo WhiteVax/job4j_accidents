@@ -20,4 +20,5 @@ public class Accident {
     private AccidentType type;
 
     private Set<Rule> rules;
+
 }

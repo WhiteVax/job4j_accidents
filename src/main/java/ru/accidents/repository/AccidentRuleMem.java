@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class AccidentRuleMem {
-    private Map<Integer, Rule> rules = new ConcurrentHashMap<>();
+    private final Map<Integer, Rule> rules = new ConcurrentHashMap<>();
 
     {
         rules.put(1, new Rule(1, "Статья 1.1 А"));

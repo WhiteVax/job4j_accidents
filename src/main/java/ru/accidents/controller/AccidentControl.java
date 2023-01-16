@@ -44,20 +44,12 @@ public class AccidentControl {
     @PostMapping("/saveAccident")
     public String save(@ModelAttribute Accident accident, @RequestParam("type.id") int id,
                        Model model, HttpServletRequest req) {
-        String[] rule = req.getParameterValues("rIds");
-        if (rule.length == 0) {
+        String[] rules = req.getParameterValues("rIds");
+        if (rules == null) {
             model.addAttribute("message", "Выберите статьи!");
             return "404";
         }
-        var type = accidentTypeService.findById(id);
-        List<Rule> rules = accidentRuleService.findByIds(rule);
-        if (type.isEmpty() || (rules.size() != rule.length)) {
-            model.addAttribute("message", "Ошибка 404 при получении статей или категорий.");
-            return "404";
-        }
-        accident.setRules(new HashSet<>(rules));
-        accident.setType(type.get());
-        accidentService.create(accident);
+        accidentService.create(accident, rules, id);
         return "redirect:/";
     }
 
@@ -77,19 +69,14 @@ public class AccidentControl {
     public String update(@ModelAttribute Accident accident, @RequestParam("type.id") int id,
                          Model model, HttpServletRequest req) {
         String[] rule = req.getParameterValues("rIds");
-        if (rule.length == 0) {
+        if (rule == null) {
             model.addAttribute("message", "Выберите статьи!");
             return "404";
         }
-        var type = accidentTypeService.findById(id);
-        List<Rule> rules = accidentRuleService.findByIds(rule);
-        if (type.isEmpty() || (rules.size() != rule.length)) {
-            model.addAttribute("message", "Ошибка 404 при получении статей или категорий.");
+        if (!accidentService.update(accident, rule, id)) {
+            model.addAttribute("message", "Ошибка при обновлении инцидента.");
             return "404";
         }
-        accident.setRules(new HashSet<>(rules));
-        accident.setType(type.get());
-        accidentService.update(accident);
         return "redirect:/";
     }
 }
