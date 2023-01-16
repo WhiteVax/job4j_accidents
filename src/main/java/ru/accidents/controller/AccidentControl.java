@@ -68,7 +68,7 @@ public class AccidentControl {
             model.addAttribute("message", "Ошибка 404 при получении данных инцидента.");
             return "404";
         }
-        model.addAttribute("accident", accidentService.findById(id).get());
+        model.addAttribute("accident", accident.get());
         model.addAttribute("rules", accidentRuleService.findAll());
         return "editAccident";
     }
