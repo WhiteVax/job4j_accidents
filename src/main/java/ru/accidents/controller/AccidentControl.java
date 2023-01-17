@@ -7,14 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.accidents.model.Accident;
-import ru.accidents.model.Rule;
 import ru.accidents.service.AccidentRuleService;
 import ru.accidents.service.AccidentService;
 import ru.accidents.service.AccidentTypeService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
-import java.util.List;
 
 @Controller
 public class AccidentControl {
@@ -69,10 +66,6 @@ public class AccidentControl {
     public String update(@ModelAttribute Accident accident, @RequestParam("type.id") int id,
                          Model model, HttpServletRequest req) {
         String[] rule = req.getParameterValues("rIds");
-        if (rule == null) {
-            model.addAttribute("message", "Выберите статьи!");
-            return "404";
-        }
         if (!accidentService.update(accident, rule, id)) {
             model.addAttribute("message", "Ошибка при обновлении инцидента.");
             return "404";

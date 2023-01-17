@@ -3,7 +3,6 @@ package ru.accidents.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.accidents.model.Accident;
-import ru.accidents.model.AccidentType;
 import ru.accidents.model.Rule;
 import ru.accidents.repository.AccidentMem;
 import ru.accidents.repository.AccidentRuleMem;
@@ -53,5 +52,4 @@ public class AccidentService {
         accidentMem.update(accident);
         return true;
     }
-
 }
