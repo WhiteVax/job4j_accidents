@@ -3,6 +3,7 @@ package ru.accidents.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.accidents.model.Rule;
+import ru.accidents.repository.AccidentRuleJdbcTemplate;
 import ru.accidents.repository.AccidentRuleMem;
 
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class AccidentRuleService {
-    private final AccidentRuleMem accidentRuleMem;
+    private final AccidentRuleJdbcTemplate accidentRuleMem;
 
     public List<Rule> findAll() {
         return accidentRuleMem.findAll();

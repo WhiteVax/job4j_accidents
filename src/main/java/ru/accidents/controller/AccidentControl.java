@@ -58,6 +58,7 @@ public class AccidentControl {
             return "404";
         }
         model.addAttribute("accident", accident.get());
+        model.addAttribute("types", accidentTypeService.findAll());
         model.addAttribute("rules", accidentRuleService.findAll());
         return "editAccident";
     }

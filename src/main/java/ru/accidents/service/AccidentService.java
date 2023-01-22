@@ -4,18 +4,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.accidents.model.Accident;
 import ru.accidents.model.Rule;
-import ru.accidents.repository.AccidentMem;
-import ru.accidents.repository.AccidentRuleMem;
-import ru.accidents.repository.AccidentTypeMem;
+import ru.accidents.repository.*;
 
 import java.util.*;
 
 @Service
 @AllArgsConstructor
 public class AccidentService {
-    private final AccidentMem accidentMem;
-    private final AccidentTypeMem accidentTypeMem;
-    private final AccidentRuleMem accidentRuleMem;
+    private final AccidentJdbcTemplate accidentMem;
+    private final AccidentTypeJdbcTemplate accidentTypeMem;
+    private final AccidentRuleJdbcTemplate accidentRuleMem;
 
     public List<Accident> findAll() {
         return accidentMem.findAll();
