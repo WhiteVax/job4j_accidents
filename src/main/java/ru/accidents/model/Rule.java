@@ -4,12 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Data @Entity
 @AllArgsConstructor
 @RequiredArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Entity
 @Table(name = "auto_rules")
 public class Rule {
     @EqualsAndHashCode.Include

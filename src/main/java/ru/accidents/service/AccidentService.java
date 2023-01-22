@@ -11,9 +11,9 @@ import java.util.*;
 @Service
 @AllArgsConstructor
 public class AccidentService {
-    private final AccidentJdbcTemplate accidentMem;
-    private final AccidentTypeJdbcTemplate accidentTypeMem;
-    private final AccidentRuleJdbcTemplate accidentRuleMem;
+    private final AccidentHibernate accidentMem;
+    private final AccidentTypeHibernate accidentTypeMem;
+    private final AccidentRuleHibernate accidentRuleMem;
 
     public List<Accident> findAll() {
         return accidentMem.findAll();
