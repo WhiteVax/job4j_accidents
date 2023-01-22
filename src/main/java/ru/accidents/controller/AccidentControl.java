@@ -73,4 +73,10 @@ public class AccidentControl {
         }
         return "redirect:/";
     }
+
+    @PostMapping("/delete")
+    public String update(@RequestParam ("id") int id) {
+        accidentService.delete(id);
+        return "redirect:/";
+    }
 }

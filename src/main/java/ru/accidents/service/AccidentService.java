@@ -50,4 +50,8 @@ public class AccidentService {
         accidentMem.update(accident);
         return true;
     }
+
+    public void delete(int id) {
+        accidentMem.delete(id);
+    }
 }

@@ -77,6 +77,11 @@
                     </div>
                     <button type="submit" class="btn btn-primary m-3">Отправить
                     </button>
+
+                    <button class="btn btn-primary m-3"
+                       th:formaction="@{|delete?id=${accident.id}|}"  type="submit">
+                       Удалить
+                    </button>
                 </form>
             </div>
         </div>

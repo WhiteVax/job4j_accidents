@@ -67,6 +67,7 @@ public class AccidentJdbcTemplate {
     }
 
     public void delete(int id) {
+        deleteRulesAndAccidents(id);
         jdbc.update(DELETE_ACCIDENT, id);
     }
 
