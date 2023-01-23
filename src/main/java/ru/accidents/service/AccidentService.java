@@ -11,12 +11,12 @@ import java.util.*;
 @Service
 @AllArgsConstructor
 public class AccidentService {
-    private final AccidentHibernate accidentMem;
-    private final AccidentTypeHibernate accidentTypeMem;
-    private final AccidentRuleHibernate accidentRuleMem;
+    private final AccidentSpringData accidentMem;
+    private final AccidentTypeSpringData accidentTypeMem;
+    private final AccidentRuleSpringData accidentRuleMem;
 
     public List<Accident> findAll() {
-        return accidentMem.findAll();
+        return (List<Accident>) accidentMem.findAll();
     }
 
     public Optional<Accident> findById(int id) {
@@ -27,12 +27,12 @@ public class AccidentService {
         accident.setType(accidentTypeMem.findById(typeId)
                 .orElseThrow(() ->
                         new NoSuchElementException(String.format("Not found AccidentType with this id = %s .", typeId))));
-        List<Rule> rules = accidentRuleMem.findByIds(Arrays.stream(ruleIds).map(Integer::parseInt).toList());
+        List<Rule> rules = (List<Rule>) accidentRuleMem.findAllById(Arrays.stream(ruleIds).map(Integer::parseInt).toList());
         if (ruleIds.length != rules.size()) {
             throw new NoSuchElementException("Not all rule IDs found.");
         }
         accident.setRules(new HashSet<>(rules));
-        accidentMem.create(accident);
+        accidentMem.save(accident);
     }
 
     public boolean update(Accident accident, String[] ruleIds, int typeId) {
@@ -42,16 +42,18 @@ public class AccidentService {
         accident.setType(accidentTypeMem.findById(typeId)
                 .orElseThrow(() ->
                         new NoSuchElementException(String.format("Not found AccidentType with this id = %s .", typeId))));
-        List<Rule> rules = accidentRuleMem.findByIds(Arrays.stream(ruleIds).map(Integer::parseInt).toList());
+        List<Rule> rules = (List<Rule>) accidentRuleMem.findAllById(Arrays.stream(ruleIds).map(Integer::parseInt).toList());
         if (ruleIds.length != rules.size()) {
             throw new NoSuchElementException("Not all rule IDs found.");
         }
         accident.setRules(new HashSet<>(rules));
-        accidentMem.update(accident);
+        accidentMem.save(accident);
         return true;
     }
 
     public void delete(int id) {
-        accidentMem.delete(id);
+        var accident = new Accident();
+        accident.setId(id);
+        accidentMem.delete(accident);
     }
 }

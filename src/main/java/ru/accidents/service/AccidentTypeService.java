@@ -3,9 +3,7 @@ package ru.accidents.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.accidents.model.AccidentType;
-import ru.accidents.repository.AccidentTypeHibernate;
-import ru.accidents.repository.AccidentTypeJdbcTemplate;
-import ru.accidents.repository.AccidentTypeMem;
+import ru.accidents.repository.AccidentTypeSpringData;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,10 +11,10 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class AccidentTypeService {
-    private final AccidentTypeHibernate accidentTypeMem;
+    private final AccidentTypeSpringData accidentTypeMem;
 
     public List<AccidentType> findAll() {
-        return accidentTypeMem.findAll();
+        return (List<AccidentType>) accidentTypeMem.findAll();
     }
 
     public Optional<AccidentType> findById(int id) {
