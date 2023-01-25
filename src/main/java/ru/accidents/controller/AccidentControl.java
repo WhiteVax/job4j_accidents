@@ -1,5 +1,6 @@
 package ru.accidents.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +28,14 @@ public class AccidentControl {
 
     @GetMapping("/all")
     public String findAll(Model model) {
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("accidents", accidentService.findAll());
         return "index";
     }
 
     @GetMapping("/createAccident")
     public String viewCreateAccident(Model model) {
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("types", accidentTypeService.findAll());
         model.addAttribute("rules", accidentRuleService.findAll());
         return "createAccident";
@@ -53,6 +56,7 @@ public class AccidentControl {
     @GetMapping("/formUpdateAccident")
     public String viewUpdateAccident(@RequestParam("id") int id, Model model) {
         var accident = accidentService.findById(id);
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         if (accident.isEmpty()) {
             model.addAttribute("message", "Ошибка 404 при получении данных инцидента.");
             return "404";
