@@ -18,6 +18,8 @@ public class LoginControl {
     @GetMapping("/login")
     public String loginPage(@RequestParam(value = "error", required = false) String error,
                             @RequestParam(value = "logout", required = false) String logout,
+                            @RequestParam(value = "registration", required = false) String registration,
+                            @RequestParam(value = "fail", required = false) String fail,
                             Model model) {
         String errorMessage = null;
         if (error != null) {
@@ -26,8 +28,14 @@ public class LoginControl {
         if (logout != null) {
             errorMessage = "Вы успешно вышли из системы !";
         }
+        if (registration != null) {
+            errorMessage = "Вы успешно зарегистрировались !";
+        }
+        if (fail != null) {
+            errorMessage = "Данный логин уже зарегистрирован !";
+        }
         model.addAttribute("errorMessage", errorMessage);
-        return "login";
+        return "user/login";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

@@ -18,7 +18,24 @@
 <body>
 
 <div class="container-fluid p-0">
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" text="/">Автомобильные инциденты</a>
+            <div class="collapse navbar-collapse">
+                <div class="navbar-nav me-auto">>
+                    <a class="nav-link text-light active" th:href="@{/all}">Главная</a>
+                    <a class="nav-link text-light" th:href="@{/createAccident}">Добавить нарушение</a>
+                </div>
+                <div class="d-flex">
+                    <a class="nav-link text-light" th:href="@{/login}">
+                        <span> Гость</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
@@ -30,17 +47,24 @@
                         </div>
                         <div class="mb-3">
                             <label for="user" class="form-label"><b>Логин</b></label>
-                            <input type="text" class="form-control" id="user" name="username" placeholder="user name" required>
+                            <input type="text" class="form-control" id="user" name="username" placeholder="user name"
+                                   required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label"><b>Пароль</b></label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="mb-3 row">
-                            <div class="col-5">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <button class="btn btn-primary w-100" type="submit">Войти</button>
+                            <div class="col-7">
+                                <p>Не зарегистрированы? <span><a th:href="@{/registration}">Зарегистрироваться</a>
+</span></p>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-5">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" type="submit">Войти</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -49,8 +73,9 @@
                     <div class="col-3"></div>
                 </form>
             </div>
-        </div>
+
     </div>
+</div>
 </div>
 </body>
 </html>

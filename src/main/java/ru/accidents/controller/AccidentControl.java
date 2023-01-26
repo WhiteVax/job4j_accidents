@@ -30,7 +30,7 @@ public class AccidentControl {
     public String findAll(Model model) {
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("accidents", accidentService.findAll());
-        return "index";
+        return "accident/index";
     }
 
     @GetMapping("/createAccident")
@@ -38,7 +38,7 @@ public class AccidentControl {
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("types", accidentTypeService.findAll());
         model.addAttribute("rules", accidentRuleService.findAll());
-        return "createAccident";
+        return "accident/createAccident";
     }
 
     @PostMapping("/saveAccident")
@@ -47,7 +47,7 @@ public class AccidentControl {
         String[] rules = req.getParameterValues("rIds");
         if (rules == null) {
             model.addAttribute("message", "Выберите статьи!");
-            return "404";
+            return "accident/404";
         }
         accidentService.create(accident, rules, id);
         return "redirect:/";
@@ -59,12 +59,12 @@ public class AccidentControl {
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         if (accident.isEmpty()) {
             model.addAttribute("message", "Ошибка 404 при получении данных инцидента.");
-            return "404";
+            return "accident/404";
         }
         model.addAttribute("accident", accident.get());
         model.addAttribute("types", accidentTypeService.findAll());
         model.addAttribute("rules", accidentRuleService.findAll());
-        return "editAccident";
+        return "accident/editAccident";
     }
 
     @PostMapping("/updateAccident")
@@ -73,7 +73,7 @@ public class AccidentControl {
         String[] rule = req.getParameterValues("rIds");
         if (!accidentService.update(accident, rule, id)) {
             model.addAttribute("message", "Ошибка при обновлении инцидента.");
-            return "404";
+            return "accident/404";
         }
         return "redirect:/";
     }
