@@ -27,7 +27,7 @@ public class AccidentControl {
     }
 
     @GetMapping("/all")
-    public String findAll(Model model) {
+    public String viewFindAll(Model model) {
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         model.addAttribute("accidents", accidentService.findAll());
         return "accident/index";
@@ -79,7 +79,7 @@ public class AccidentControl {
     }
 
     @PostMapping("/delete")
-    public String update(@RequestParam ("id") int id) {
+    public String delete(@RequestParam ("id") int id) {
         accidentService.delete(id);
         return "redirect:/";
     }

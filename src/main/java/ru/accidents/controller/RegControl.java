@@ -23,7 +23,7 @@ public class RegControl {
     }
 
     @PostMapping("/registrationUser")
-    public String regSave(@ModelAttribute User user) {
+    public String registrationSave(@ModelAttribute User user) {
         user.setEnabled(true);
         user.setPassword(encoder.encode(user.getPassword()));
         user.setAuthority(authorities.findByAuthorityUser());
@@ -34,7 +34,7 @@ public class RegControl {
     }
 
     @GetMapping("/registration")
-    public String regPage() {
+    public String viewRegistrationPage() {
         return "user/registration";
     }
 }
