@@ -31,7 +31,7 @@
             </activation>
         </profile>
         <profile>
-            <id>production</id>
+            <id>prod</id>
             <properties>
                 <liquibase.config>src/main/resources/db.properties</liquibase.config>
             </properties>
