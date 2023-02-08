@@ -16,14 +16,14 @@ public class AccidentService {
     private final AccidentRuleSpringData accidentRuleMem;
 
     public List<Accident> findAll() {
-        return (List<Accident>) accidentMem.findAll();
+        return accidentMem.findAll();
     }
 
     public Optional<Accident> findById(int id) {
         return accidentMem.findById(id);
     }
 
-    public void create(Accident accident, String[] ruleIds, int typeId) {
+    public Accident create(Accident accident, String[] ruleIds, int typeId) {
         accident.setType(accidentTypeMem.findById(typeId)
                 .orElseThrow(() ->
                         new NoSuchElementException(String.format("Not found AccidentType with this id = %s .", typeId))));
@@ -33,6 +33,7 @@ public class AccidentService {
         }
         accident.setRules(new HashSet<>(rules));
         accidentMem.save(accident);
+        return accident;
     }
 
     public boolean update(Accident accident, String[] ruleIds, int typeId) {

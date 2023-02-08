@@ -46,6 +46,7 @@ public class AccidentControl {
                        Model model, HttpServletRequest req) {
         String[] rules = req.getParameterValues("rIds");
         if (rules == null) {
+            model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
             model.addAttribute("message", "Выберите статьи!");
             return "accident/404";
         }
@@ -72,6 +73,7 @@ public class AccidentControl {
                          Model model, HttpServletRequest req) {
         String[] rule = req.getParameterValues("rIds");
         if (!accidentService.update(accident, rule, id)) {
+            model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
             model.addAttribute("message", "Ошибка при обновлении инцидента.");
             return "accident/404";
         }
