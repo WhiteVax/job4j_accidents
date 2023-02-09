@@ -26,7 +26,7 @@
         <profile>
             <id>test</id>
             <properties>
-                <liquibase.config>src/test/resources/db-test.properties</liquibase.config>
+                <liquibase.config>src/test/resources/db.properties</liquibase.config>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -36,12 +36,12 @@
             <id>prod</id>
             <properties>
                 <liquibase.config>src/main/resources/db.properties</liquibase.config>
+                <liquibase.config>db/liquibase.properties</liquibase.config>
             </properties>
         </profile>
     </profiles>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
@@ -107,7 +107,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>2.1.214</version>
+            <version>2.1.210</version>
             <scope>test</scope>
         </dependency>
 
@@ -151,6 +151,11 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>5.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.15.0</version>
         </dependency>
     </dependencies>
     <build>

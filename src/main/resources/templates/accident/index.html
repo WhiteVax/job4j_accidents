@@ -22,8 +22,8 @@
             <a class="navbar-brand" text="/">Автомобильные инциденты</a>
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav me-auto">>
-                    <a class="nav-link text-light active" th:href="@{/all}">Главная</a>
-                    <a class="nav-link text-light" th:href="@{/createAccident}">Добавить нарушение</a>
+                    <a class="nav-link text-light active" th:href="@{/accidents/all}">Главная</a>
+                    <a class="nav-link text-light" th:href="@{/accidents/create}">Добавить нарушение</a>
                 </div>
                 <div class="d-flex">
                     <a class="nav-link text-light" th:href="@{/logout}">
@@ -51,7 +51,7 @@
             <tr th:each="accident: ${accidents}">
 
                 <td>
-                    <a th:href="@{|/formUpdateAccident?id=${accident.id}|}"
+                    <a th:href="@{|/accidents/formUpdate?id=${accident.id}|}"
                        th:text="${accident.id}">
                         <i class="fa fa-edit"></i>
                     </a>

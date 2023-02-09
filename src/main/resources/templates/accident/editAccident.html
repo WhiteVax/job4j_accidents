@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
             integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
             crossorigin="anonymous"></script>
-    <title>Автомобильные инциденты</title>
+    <title>Редактирование инцидента</title>
 </head>
 <body>
 <div class="container-fluid p-0">
@@ -22,8 +22,8 @@
             <a class="navbar-brand" text="/">Автомобильные инциденты</a>
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav me-auto">>
-                    <a class="nav-link text-light active" th:href="@{/all}">Главная</a>
-                    <a class="nav-link text-light" th:href="@{/createAccident}">Добавить нарушение</a>
+                    <a class="nav-link text-light active" th:href="@{/accidents/all}">Главная</a>
+                    <a class="nav-link text-light" th:href="@{/accidents/create}">Добавить нарушение</a>
                 </div>
                 <div class="d-flex">
                     <a class="nav-link text-light" th:href="@{/logout}">
@@ -41,7 +41,7 @@
                 Редактирование инцидента
             </div>
             <div class="card-body">
-                <form th:action="@{/updateAccident}" method="POST" th:object = "${accident}" enctype="multipart/form-data">
+                <form th:action="@{/accidents/update}" method="POST" th:object = "${accident}" enctype="multipart/form-data">
                     <input type="hidden" name="id" th:field="*{id}"/>
                     <div class="row">
                         <div class="col">
